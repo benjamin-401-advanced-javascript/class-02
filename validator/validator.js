@@ -17,7 +17,7 @@ class Validator {
   isArray(input, valueType) {
     if (Array.isArray(input)) {
       return input.reduce((acc, value) => {
-        return value === valueType ? true : false
+        return typeof value === valueType ? true : false
       }, true)
     } else {
       return false;
@@ -45,16 +45,17 @@ class Validator {
       return false;
   }
 
+
   isValid(data) {
-    Object.keys(this.schema.fields).forEach(expectedProperty => {
+    return Object.keys(this.schema.fields).reduce((acc, expectedProperty) => {
       if (!data.hasOwnProperty(expectedProperty)) {
-        return false;
+        acc = false;
       }
-      if (typeof data[expectedProperty] !== schema.fields[expectedProperty].type) {
-        return false;
+      if (typeof data[expectedProperty] !== this.schema.fields[expectedProperty].type) {
+        acc = false;
       }
-    })
-    return true;
+      return acc;
+    }, true)
   }
 
 }

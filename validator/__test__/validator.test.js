@@ -99,12 +99,12 @@ describe('#validator', () => {
       }
       const invalidObj1 = {
         firstName: "Fred",
-        lastName: "Sample",
+        lastName: 5,
         hair: {
           type: "wavy",
           color: "brown"
         },
-        favoriteFoods: ["pizza", "cupcakes", "salmon"],
+        favoriteFoods: 5,
         married: 'happy',
         kids: 3
       }
